@@ -1,0 +1,7 @@
+<ul class="nav nav-tabs custom-navbar">
+    {% for item in navbarData: %}
+        <li class="nav-item">
+            <a class="nav-link {{'active' if item[0]==navPosition else '' }}" href="{{item[1]}}">{{item[0]}}</a>
+        </li>
+    {% endfor %}
+</ul>

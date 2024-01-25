@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include 'partial/head.html' %}
+</head>
+<body>
+    <div class="container-fluid p-0">
+      {% include 'partial/navbar.html' %}
+    </div> 
+    <div class="container pb-5 pt-3">
+        {% if cardData %}
+        <div class="row pb-3">
+          <!-- Card 1 -->
+          <div class="col-md-4">
+            <div class="custom-card">
+              <div class="card-body">
+                <h5 class="card-title">Jumlah Data</h5>
+                <h1 class="card-text text-end">{{cardData[0]}}</p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
+          </div>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="col-md-4">
+            <div class="custom-card">
+              <div class="card-body">
+                <h5 class="card-title">Harga Tertinggi</h5>
+                <h1 class="card-text text-end">{{cardData[1]}}</p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
+          </div>
+          </div>
+          
+          <!-- Card 3 -->
+          <div class="col-md-4">
+            <div class="custom-card">
+              <div class="card-body">
+                  <h5 class="card-title">Harga Terendah</h5>
+                  <h1 class="card-text text-end">{{cardData[2]}}</p>
+                  <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
+              </div>
+              </div>
+      </div>
+        {% else %} 
+        <div class="alert alert-primary alert-dismissible fade show" role="alert" id="alertCenter">
+            <strong>Selamat Datang,</strong> rumah impianmu adalah tujuan yang layak diperjuangkan. Dengan tekad dan perencanaan yang tepat, impian itu akan menjadi kenyataan.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endif %} 
+    <div class="row">
+        <div class="col-md-8">
+            <div id="map" style="width: 100%;height: 1000px;"></div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                  <!-- Home Specification -->
+                  <h5 class="card-title">Paramater Harga Rumah</h5>
+                </div>
+                <div class="card-body">
+                  <!-- <form> -->
+                    <div class="mb-3">
+                        <label for="rangeLuasTanah" class="form-label">Luas Tanah</label>
+                            <input type="range" class="form-range" min="10" max="1000" step="5" id="rangeLuasTanah" name="rangeLuasTanah" aria-describedby="ariaRangeLuasTanah" value="10">
+                            <div id="ariaRangeLuasTanah" class="form-text">10 meter</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rangeKamarTidur" class="form-label">Kamar Tidur</label>
+                        <input type="range" class="form-range" min="1" max="10" step="1" id="rangeKamarTidur" name="rangeKamarTidur" aria-describedby="ariaRangeKamarTidur" value="1">
+                        <div id="ariaRangeKamarTidur" class="form-text">1 unit</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rangeKamarMandi" class="form-label">Kamar Mandi</label>
+                        <input type="range" class="form-range" min="1" max="10" step="1" id="rangeKamarMandi" name="rangeKamarMandi" aria-describedby="ariaRangeKamarMand" value="1">
+                        <div id="ariaRangeKamarMandi" class="form-text">1 unit</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rangeLuasBangunan" class="form-label">Luas Bangunan</label>
+                        <input type="range" class="form-range" min="10" max="1000" step="5" id="rangeLuasBangunan" name="rangeLuasBangunan" aria-describedby="ariaRangeLuasBangunan" value="10">
+                        <div id="ariaRangeLuasBangunan" class="form-text">10 meter</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rangeCarport" class="form-label">Carport</label>
+                        <input type="range" class="form-range" min="0" max="10" step="1" id="rangeCarport" name="rangeCarport" aria-describedby="ariaRangeCarport" value="0">
+                        <div id="ariaRangeCarport" class="form-text">0 unit</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rangeLantai" class="form-label">Lantai</label>
+                        <input type="range" class="form-range" min="1" max="4" step="1" id="rangeLantai" name="rangeLantai" aria-describedby="ariaRangeLantai" value="1">
+                        <div id="ariaRangeLantai" class="form-text">1 floor</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="form-label">Internet Coverage</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioTerjangkauInternet" id="radioTerjangkauInternet1" value="Ya" checked>
+                            <label class="form-check-label" for="radioTerjangkauInternet1">
+                              Ya
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioTerjangkauInternet" id="radioTerjangkauInternet2" value="Tidak">
+                            <label class="form-check-label" for="radioTerjangkauInternet2">
+                              Tidak
+                            </label>
+                          </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="form-label">Kota</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioZoneJakarta" id="radioZoneJakarta1" value="Jakarta Barat" checked>
+                            <label class="form-check-label" for="radioZoneJakarta1">
+                              Jakarta Barat
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioZoneJakarta" id="radioZoneJakarta2" value="Jakarta Selatan">
+                            <label class="form-check-label" for="radioZoneJakarta2">
+                              Jakarta Selatan
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioZoneJakarta" id="radioZoneJakarta3" value="Jakarta Pusat">
+                            <label class="form-check-label" for="radioZoneJakarta3">
+                              Jakarta Pusat
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioZoneJakarta" id="radioZoneJakarta4" value="Jakarta Timur">
+                            <label class="form-check-label" for="radioZoneJakarta4">
+                              Jakarta Timur
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioZoneJakarta" id="radioZoneJakarta5" value="Jakarta Utara">
+                            <label class="form-check-label" for="radioZoneJakarta5">
+                              Jakarta Utara
+                            </label>
+                          </div>
+                    </div>
+                    <button class="btn btn-primary" id="btnHomePrediction">Submit</button>
+                  <!-- </form> -->
+                </div>
+              </div>
+        </div>
+    </div>
+    </div>
+
+    {% include 'partial/jsFunction.html' %}
+</body>
+</html>
